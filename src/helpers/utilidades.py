@@ -20,7 +20,7 @@ class Utilidades:
     @staticmethod
     def parse_fecha(col: pd.Series) -> pd.Series:
         """Convierte una columna a datetime (si se puede)."""
-        return pd.to_datetime(col, errors="coerce", infer_datetime_format=True)
+        return pd.to_datetime(col, errors="coerce")
 
     @staticmethod
     def normalizar_idioma(col: pd.Series) -> pd.Series:
