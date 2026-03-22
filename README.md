@@ -8,7 +8,6 @@ Repositorio Proyecto II Programación II
 Proyecto de **Análisis Exploratorio de Datos (EDA)** y **Visualización Interactiva** utilizando un dataset de películas de **TMDB**. El objetivo es transformar datos crudos en **insights claros y accionables** mediante un pipeline reproducible y un **dashboard interactivo en Streamlit**.
 ---
 ## 🚀 Demo rápida
->>>>>>> 15ccbacb6c8bdd33a75dbb73d7772fe1d34720d5
 ```bash
 # Ejecutar pipeline de datos
 python -m src.main
