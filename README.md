@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🎬 TMDB Movie Insights
 
 Proyecto de **Análisis Exploratorio de Datos (EDA)** y **Visualización Interactiva** utilizando un dataset de películas de **TMDB**.  
@@ -9,12 +10,25 @@ El objetivo es transformar datos crudos en **insights claros y accionables** med
 
 ## 🚀 Demo rápida
 
+=======
+# ProyectoII
+Repositorio Proyecto II Programación II 
+=======
+## Mauricio Ortiz & Josué Redondo
+# 🎬 TMDB Movie Insights
+
+Proyecto de **Análisis Exploratorio de Datos (EDA)** y **Visualización Interactiva** utilizando un dataset de películas de **TMDB**. El objetivo es transformar datos crudos en **insights claros y accionables** mediante un pipeline reproducible y un **dashboard interactivo en Streamlit**.
+
+---
+## 🚀 Demo rápida
+>>>>>>> 15ccbacb6c8bdd33a75dbb73d7772fe1d34720d5
 ```bash
 # Ejecutar pipeline de datos
 python -m src.main
 
 # Ejecutar dashboard
 streamlit run dashboard/app.py
+<<<<<<< HEAD
 ```
 
 Dashboard disponible en: `http://localhost:8501`
@@ -24,6 +38,11 @@ Dashboard disponible en: `http://localhost:8501`
 ## 📁 Estructura del proyecto
 
 ```text
+=======
+
+## Estructura del Proyecto
+
+>>>>>>> 15ccbacb6c8bdd33a75dbb73d7772fe1d34720d5
 Movie_Insigths/
 ├── data/                 # Datos de entrada y salidas limpias
 ├── notebooks/            # Análisis exploratorio y justificación
@@ -35,6 +54,7 @@ Movie_Insigths/
 ├── dashboard/            # Dashboard interactivo (Streamlit)
 ├── requirements.txt      # Dependencias del proyecto
 └── README.md
+<<<<<<< HEAD
 ```
 
 ---
@@ -131,3 +151,5 @@ Proyecto académico / Data Analysis
 ---
 
 ⭐ *Si este proyecto te resulta útil o interesante, no dudes en darle una estrella al repositorio.*
+=======
+>>>>>>> 15ccbacb6c8bdd33a75dbb73d7772fe1d34720d5
