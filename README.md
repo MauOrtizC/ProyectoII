@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🎬 TMDB Movie Insights
 
 Proyecto de **Análisis Exploratorio de Datos (EDA)** y **Visualización Interactiva** utilizando un dataset de películas de **TMDB**.  
