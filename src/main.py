@@ -1,30 +1,41 @@
 "# Punto de entrada del proyecto"
 
-import pandas as pd
+from src.cargaDatos.cargador_datos import CargadorDatos
+from src.eda.procesador_eda import ProcesadorEDA
+from src.visualizacion.visualizador import Visualizador
 
-class CargadorDatos:
+DATA_RAW = "data/raw/tmdb_2020_to_2025.csv"
+DATA_CLEAN = "data/processed/tmdb_movies_clean.csv"
 
-    """
-         Carga el dataset desde data/raw/tmdb_2020_to_2025.csv
-    """
+def main():
+    # 1) Carga
+    loader = CargadorDatos(DATA_RAW)
+    df = loader.cargar()
+    resumen = loader.resumen_carga()
+    print(f"[Carga] Filas: {resumen.filas} | Columnas: {resumen.columnas} | %Nulos: {resumen.porcentaje_nulos}")
 
-    def __init__(self, ruta_csv: str):
-        self.ruta_csv = ruta_csv
-        self.df: pd.DataFrame | None = None
-        self.resultado: ResultadoCarga | None = None
+    # 2) EDA / Limpieza
+    eda = ProcesadorEDA(df)
+    df_clean = eda.limpieza_datos()
+    eda.guardar_limpio(DATA_CLEAN)
+    print(f"[EDA] Dataset limpio guardado en: {DATA_CLEAN}")
 
-    def cargar(self, encoding: str = "utf-8") -> pd.DataFrame:
-        try:
-            df = pd.read_csv(self.ruta_csv, encoding=encoding)
-        except UnicodeDecodeError:
-            # fallback típico
-            df = pd.read_csv(self.ruta_csv, encoding="latin-1")
+    # 3) Resumen descriptivo
+    desc = eda.resumen_descriptivo()
+    if not desc.empty:
+        print("\n[Resumen descriptivo]\n", desc.head())
 
-        self.df = df
-        self.resultado = ResultadoCarga(
-            filas=df.shape[0],
-            columnas=df.shape[1],
-            porcentaje_nulos=Utilidades.porcentaje_nulos(df),
-        )
-        return df
+    # 4) Correlación
+    corr = eda.matriz_correlacion()
+    if not corr.empty:
+        print("\n[Correlación] OK")
 
+    # 5) Visualización básica (ejemplo)
+    viz = Visualizador(df_clean)
+    fig, insight = viz.histograma_popularidad()
+    if fig:
+        print("\n[Insight]", insight)
+        fig.show()
+
+if __name__ == "__main__":
+    main()
