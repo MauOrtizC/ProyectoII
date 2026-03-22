@@ -1,11 +1,22 @@
-"# Punto de entrada del proyecto"
+"#clase para cargar datos"
 
+from __future__ import annotations
+from dataclasses import dataclass
 import pandas as pd
+from src.helpers.utilidades import Utilidades
+
+
+@dataclass
+class ResultadoCarga:
+    filas: int
+    columnas: int
+    porcentaje_nulos: float
+
 
 class CargadorDatos:
-
     """
-         Carga el dataset desde data/raw/tmdb_2020_to_2025.csv
+    Carga el dataset desde data/raw/tmdb_2020_to_2025.csv
+    y registra: número de filas y % de nulos.
     """
 
     def __init__(self, ruta_csv: str):
@@ -28,3 +39,7 @@ class CargadorDatos:
         )
         return df
 
+    def resumen_carga(self) -> ResultadoCarga:
+        if self.resultado is None:
+            raise ValueError("Primero debes ejecutar cargar().")
+        return self.resultado
