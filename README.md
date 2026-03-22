@@ -1,14 +1,3 @@
-# 🎬 TMDB Movie Insights
-
-Proyecto de **Análisis Exploratorio de Datos (EDA)** y **Visualización Interactiva** utilizando un dataset de películas de **TMDB**.  
-El objetivo es transformar datos crudos en **insights claros y accionables** mediante un pipeline reproducible y un **dashboard interactivo en Streamlit**.
-
-📌 **Nota**: Este repositorio separa claramente la exploración (notebooks), la lógica final (código modular) y la presentación de resultados (dashboard).
-
----
-
-## 🚀 Demo rápida
-
 =======
 # ProyectoII
 Repositorio Proyecto II Programación II 
@@ -17,7 +6,6 @@ Repositorio Proyecto II Programación II
 # 🎬 TMDB Movie Insights
 
 Proyecto de **Análisis Exploratorio de Datos (EDA)** y **Visualización Interactiva** utilizando un dataset de películas de **TMDB**. El objetivo es transformar datos crudos en **insights claros y accionables** mediante un pipeline reproducible y un **dashboard interactivo en Streamlit**.
-
 ---
 ## 🚀 Demo rápida
 >>>>>>> 15ccbacb6c8bdd33a75dbb73d7772fe1d34720d5
@@ -27,7 +15,6 @@ python -m src.main
 
 # Ejecutar dashboard
 streamlit run dashboard/app.py
-<<<<<<< HEAD
 ```
 
 Dashboard disponible en: `http://localhost:8501`
