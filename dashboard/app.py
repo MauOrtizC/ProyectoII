@@ -6,7 +6,7 @@ from src.eda.procesador_eda import ProcesadorEDA
 from src.visualizacion.visualizador import Visualizador
 
 st.set_page_config(page_title="TMDB Movie Insights", layout="wide")
-st.title(" TMDB Movie Insights (2020–2025)")
+st.title("🎬 TMDB Movie Insights (2020–2025)")
 
 df = pd.read_csv("data/processed/tmdb_movies_clean.csv")
 viz = Visualizador(df)
