@@ -7,7 +7,7 @@ Repositorio Proyecto II Programación II
 
 Proyecto de **Análisis Exploratorio de Datos (EDA)** y **Visualización Interactiva** utilizando un dataset de películas de **TMDB**. El objetivo es transformar datos crudos en **insights claros y accionables** mediante un pipeline reproducible y un **dashboard interactivo en Streamlit**.
 ---
-## 🚀 Demo rápida
+## Demo rápida
 ```bash
 # Ejecutar pipeline de datos
 python -m src.main
@@ -20,7 +20,7 @@ Dashboard disponible en: `http://localhost:8501`
 
 ---
 
-## 📁 Estructura del proyecto
+## Estructura del proyecto
 
 ```text
 =======
@@ -44,7 +44,7 @@ Movie_Insigths/
 
 ---
 
-## ⚙️ Requisitos
+## Requisitos
 
 - **Python** 3.10 o superior  
 - Librerías principales:
@@ -62,9 +62,9 @@ python -m pip install -r requirements.txt
 
 ---
 
-## ▶️ Ejecución del proyecto
+## Ejecución del proyecto
 
-### 1️⃣ Pipeline de datos
+### Pipeline de datos
 
 ```bash
 python -m src.main
@@ -78,7 +78,7 @@ Este paso:
 
 ---
 
-### 2️⃣ Dashboard interactivo
+### Dashboard interactivo
 
 ```bash
 streamlit run dashboard/app.py
@@ -91,7 +91,7 @@ Permite explorar:
 
 ---
 
-## 📊 Resultados principales
+## Resultados principales
 
 - Dataset limpio y consistente  
 - Visualizaciones claras y reutilizables  
@@ -102,11 +102,11 @@ Permite explorar:
 
 ---
 
-## 🧪 Notebooks (EDA)
+## Notebooks (EDA)
 
 Los notebooks se utilizan **exclusivamente para exploración, pruebas y documentación de decisiones**.
 
-📌 **Importante**:
+ **Importante**:
 - La lógica validada en los notebooks se implementa posteriormente en `src/`
 - Esto permite mantener un código limpio, modular y reproducible
 
@@ -115,10 +115,9 @@ Notebook principal:
 ```text
 notebooks/01_EDA_TMDB.ipynb
 ```
-
 ---
 
-## ✅ Buenas prácticas aplicadas
+## Buenas prácticas aplicadas
 
 - Separación clara entre exploración y producción  
 - Código modular y reutilizable  
@@ -128,13 +127,9 @@ notebooks/01_EDA_TMDB.ipynb
 
 ---
 
-## 👤 Autor
+## Autor
 
-**Mauricio Ortiz**  
-Proyecto académico / Data Analysis
+**Mauricio Ortiz**  & **Josué Redondo**
+Proyecto # 2 / Data Analysis
 
 ---
-
-⭐ *Si este proyecto te resulta útil o interesante, no dudes en darle una estrella al repositorio.*
-=======
->>>>>>> 15ccbacb6c8bdd33a75dbb73d7772fe1d34720d5
