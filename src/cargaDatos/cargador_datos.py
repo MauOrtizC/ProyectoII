@@ -28,7 +28,7 @@ class CargadorDatos:
         try:
             df = pd.read_csv(self.ruta_csv, encoding=encoding)
         except UnicodeDecodeError:
-            # fallback típico
+
             df = pd.read_csv(self.ruta_csv, encoding="latin-1")
 
         self.df = df
