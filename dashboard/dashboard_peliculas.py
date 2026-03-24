@@ -16,10 +16,10 @@ class AnalizadorPeliculas:
     def __init__(self, ruta_archivo):
 
         # Ruta de la laptop de Mau
-        #self.ruta_archivo = r"C:\Movie_Insigths\data\processed\tmdb_movies_clean.csv"
+        self.ruta_archivo = r"C:\Movie_Insigths\data\processed\tmdb_movies_clean.csv"
 
         # Ruta de la laptop de Josué
-        self.ruta_archivo = r"C:\Users\harir\OneDrive\Documents\AAA_Progra2\Proyecto_2\data\processed\tmdb_movies_clean.csv"
+        #self.ruta_archivo = r"C:\Users\harir\OneDrive\Documents\AAA_Progra2\Proyecto_2\data\processed\tmdb_movies_clean.csv"
         self.df = None  # Inicialmente vacío
     
     def cargar_datos(self):
