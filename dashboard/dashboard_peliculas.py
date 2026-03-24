@@ -1,6 +1,5 @@
 # ============================================
 # DASHBOARD DE PELÍCULAS - STREAMLIT
-# Proyecto estudiantil con POO básica
 # ============================================
 
 # IMPORTACIONES
@@ -8,56 +7,23 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from datetime import datetime
 
 # ============================================
 # CLASE PRINCIPAL: AnalizadorPeliculas
 # ============================================
 class AnalizadorPeliculas:
-    """
-    Clase que encapsula toda la lógica de análisis de películas.
-    
-    ¿Qué es una clase?
-    - Es como un "molde" o "plantilla" para crear objetos
-    - Agrupa datos (atributos) y funciones (métodos) relacionados
-    
-    Atributos (datos que guarda):
-    - df: El DataFrame con todas las películas
-    
-    Métodos (funciones que puede hacer):
-    - cargar_datos(): Lee el archivo CSV
-    - calcular_metricas(): Calcula estadísticas generales
-    - grafico_XXX(): Crea cada gráfico
-    """
     
     def __init__(self, ruta_archivo):
-        """
-        Constructor de la clase.
-        
-        ¿Qué es __init__?
-        - Es el método "constructor", se ejecuta al crear el objeto
-        - Inicializa los atributos (variables) del objeto
-        - self = referencia al objeto mismo
-        
-        Parámetros:
-        - ruta_archivo: Ubicación del CSV
-        """
-        # Ruta de la PC de Josué
-        self.ruta_archivo = r"C:\Movie_Insigths\data\processed\tmdb_movies_clean.csv"
+
+        # Ruta de la laptop de Mau
+        #self.ruta_archivo = r"C:\Movie_Insigths\data\processed\tmdb_movies_clean.csv"
+
+        # Ruta de la laptop de Josué
+        self.ruta_archivo = r"C:\Users\harir\OneDrive\Documents\AAA_Progra2\Proyecto_2\data\processed\tmdb_movies_clean.csv"
         self.df = None  # Inicialmente vacío
     
     def cargar_datos(self):
-        """
-        Carga el archivo CSV en un DataFrame.
-        
-        ¿Por qué un método separado?
-        - Separación de responsabilidades (buen POO)
-        - Puedo reutilizarlo
-        - Fácil de modificar o debuggear
-        
-        Returns:
-        - bool: True si cargó bien, False si hubo error
-        """
+
         try:
             # Leer CSV
             self.df = pd.read_csv(self.ruta_archivo)
@@ -74,12 +40,7 @@ class AnalizadorPeliculas:
             return False
     
     def calcular_metricas(self):
-        """
-        Calcula las métricas principales del dataset.
-        
-        Returns:
-        - dict: Diccionario con las métricas
-        """
+
         metricas = {
             'total_peliculas': len(self.df),
             'calificacion_promedio': self.df['vote_average'].mean(),
@@ -90,16 +51,7 @@ class AnalizadorPeliculas:
         return metricas
     
     def grafico_distribucion_calificaciones(self):
-        """
-        Crea histograma de distribución de calificaciones.
-        
-        ¿Qué muestra?
-        - Cuántas películas tienen cada rango de calificación
-        - Si la mayoría son buenas, malas o mediocres
-        
-        Returns:
-        - plotly figure object
-        """
+
         fig = px.histogram(
             self.df,
             x='vote_average',
@@ -119,19 +71,7 @@ class AnalizadorPeliculas:
         return fig
     
     def grafico_top_idiomas(self, top_n=10):
-        """
-        Crea gráfico de barras con los idiomas más comunes.
-        
-        ¿Qué muestra?
-        - Qué idiomas tienen más películas
-        - Dominancia de ciertas industrias (Hollywood, Bollywood, etc.)
-        
-        Parámetros:
-        - top_n: Cuántos idiomas mostrar (default: 10)
-        
-        Returns:
-        - plotly figure object
-        """
+
         # Contar películas por idioma
         conteo_idiomas = self.df['original_language'].value_counts().head(top_n)
         
@@ -155,17 +95,7 @@ class AnalizadorPeliculas:
         return fig
     
     def grafico_evolucion_temporal(self):
-        """
-        Crea gráfico de línea mostrando películas por año.
-        
-        ¿Qué muestra?
-        - Cómo ha cambiado la producción cinematográfica a lo largo del tiempo
-        - Épocas doradas del cine
-        - Boom reciente de producción
-        
-        Returns:
-        - plotly figure object
-        """
+
         # Filtrar años válidos (no NaN)
         df_con_anio = self.df[self.df['year'].notna()].copy()
         
@@ -177,7 +107,7 @@ class AnalizadorPeliculas:
             peliculas_por_anio,
             x='year',
             y='cantidad',
-            title='Evolución de la Producción Cinematográfica',
+            title='Evolución de la Producción Cinematográfica entre el año 2020 y el año 2025',
             labels={'year': 'Año', 'cantidad': 'Número de Películas'}
         )
         
@@ -192,17 +122,7 @@ class AnalizadorPeliculas:
         return fig
     
     def grafico_popularidad_vs_calificacion(self):
-        """
-        Crea scatter plot de Popularidad vs Calificación.
-        
-        ¿Qué muestra?
-        - Si las películas populares son realmente buenas
-        - Identifica joyas ocultas y películas sobrevaloradas
-        - Cada punto = una película
-        
-        Returns:
-        - plotly figure object
-        """
+
         # Filtrar películas con datos válidos
         df_filtrado = self.df[
             (self.df['popularity'].notna()) & 
@@ -235,27 +155,14 @@ class AnalizadorPeliculas:
         return fig
     
     def obtener_top_peliculas(self, n=10, min_votos=100):
-        """
-        Obtiene las N películas mejor calificadas.
-        
-        ¿Por qué min_votos?
-        - Evita películas con 1 voto de 10/10 que no son representativas
-        - Solo considera películas con suficientes votaciones
-        
-        Parámetros:
-        - n: Cuántas películas retornar
-        - min_votos: Mínimo de votos requeridos
-        
-        Returns:
-        - DataFrame con las top películas
-        """
-        # Filtrar por mínimo de votos
+
+        # Filtrado de votos
         df_filtrado = self.df[self.df['vote_count'] >= min_votos].copy()
         
-        # Ordenar por calificación descendente
+        # Ordenamiento descendente
         top_peliculas = df_filtrado.nlargest(n, 'vote_average')
         
-        # Seleccionar columnas relevantes
+        # Columnas relevantes
         return top_peliculas[['title', 'vote_average', 'vote_count', 'year', 'original_language']]
 
 
@@ -263,36 +170,13 @@ class AnalizadorPeliculas:
 # CLASE PARA LA INTERFAZ: InterfazDashboard
 # ============================================
 class InterfazDashboard:
-    """
-    Clase que maneja la interfaz visual con Streamlit.
-    
-    ¿Por qué separar en otra clase?
-    - AnalizadorPeliculas = lógica de datos (backend)
-    - InterfazDashboard = presentación visual (frontend)
-    - Separación de responsabilidades (buen POO)
-    
-    Atributos:
-    - analizador: Objeto de tipo AnalizadorPeliculas
-    """
     
     def __init__(self, analizador):
-        """
-        Constructor.
-        
-        Parámetros:
-        - analizador: Objeto AnalizadorPeliculas ya creado
-        """
+
         self.analizador = analizador
     
     def configurar_pagina(self):
-        """
-        Configura la página de Streamlit.
-        
-        ¿Qué hace?
-        - Define título de la pestaña del navegador
-        - Define diseño (wide = ancho completo)
-        - Configura sidebar
-        """
+
         st.set_page_config(
             page_title="Dashboard de Películas 🎬",
             page_icon="🎬",
@@ -300,26 +184,17 @@ class InterfazDashboard:
         )
     
     def mostrar_header(self):
-        """
-        Muestra el encabezado del dashboard.
-        """
+
         st.title("🎬 Dashboard de Análisis de Películas")
         st.markdown("---")  # Línea divisoria
         st.markdown("""
-        **Bienvenido al Dashboard de Películas**
+        **Bienvenido al Dashboard de Películas de The Movie Database**
         
         Este dashboard analiza 10,000 películas de la base de datos TMDB.
-        Explora las visualizaciones para descubrir tendencias interesantes.
         """)
     
     def mostrar_metricas(self):
-        """
-        Muestra las métricas principales en la parte superior.
-        
-        ¿Qué es st.columns?
-        - Divide el espacio horizontal en columnas
-        - Permite mostrar métricas lado a lado
-        """
+
         # Calcular métricas
         metricas = self.analizador.calcular_metricas()
         
@@ -362,16 +237,10 @@ class InterfazDashboard:
         st.markdown("---")
     
     def mostrar_graficos(self):
-        """
-        Muestra todos los gráficos del dashboard.
-        
-        ¿Por qué st.plotly_chart?
-        - Renderiza gráficos de Plotly en Streamlit
-        - use_container_width=True hace que ocupe todo el ancho
-        """
+
         # GRÁFICO 1: Distribución de Calificaciones
         st.markdown("### 📊 Distribución de Calificaciones")
-        st.markdown("*¿Cómo se distribuyen las calificaciones? ¿La mayoría son buenas o malas?*")
+        st.markdown("*¿Cómo se distribuyen las calificaciones?*")
         fig1 = self.analizador.grafico_distribucion_calificaciones()
         st.plotly_chart(fig1, use_container_width=True)
         
@@ -396,7 +265,7 @@ class InterfazDashboard:
         
         # GRÁFICO 4: Popularidad vs Calificación
         st.markdown("### 💎 Popularidad vs Calificación")
-        st.markdown("*¿Las películas populares son realmente las mejores? ¿Hay joyas ocultas?*")
+        st.markdown("*¿Las películas populares son realmente las mejores?*")
         fig4 = self.analizador.grafico_popularidad_vs_calificacion()
         st.plotly_chart(fig4, use_container_width=True)
         
@@ -416,14 +285,7 @@ class InterfazDashboard:
         )
     
     def ejecutar(self):
-        """
-        Método principal que ejecuta todo el dashboard.
-        
-        ¿Por qué este método?
-        - Orquesta toda la interfaz
-        - Llama a todos los métodos en orden
-        - Punto de entrada principal
-        """
+
         self.configurar_pagina()
         self.mostrar_header()
         
@@ -432,7 +294,8 @@ class InterfazDashboard:
             self.mostrar_metricas()
             self.mostrar_graficos()
         else:
-            st.error("❌ No se pudieron cargar los datos. Verifica la ruta del archivo.")
+            st.error("No se pudieron cargar los datos. Verifica la ruta del archivo.")
+
 
 
 # ============================================
@@ -441,23 +304,23 @@ class InterfazDashboard:
 def main():
     """
     Función principal que inicia la aplicación.
-    
+
     ¿Por qué una función main?
     - Buena práctica de programación
     - Separa la lógica de inicio
     - Facilita testing y reutilización
     """
     # PASO 1: Crear el analizador de películas
-    ruta_csv = 'tmdb_movies_clean.csv'  # Cambiar si tu archivo está en otra ubicación
+    ruta_csv = 'tmdb_movies_clean.csv'
     analizador = AnalizadorPeliculas(ruta_csv)
-    
+
     # PASO 2: Cargar los datos
     if not analizador.cargar_datos():
         st.stop()  # Detener ejecución si falló la carga
-    
+
     # PASO 3: Crear la interfaz
     interfaz = InterfazDashboard(analizador)
-    
+
     # PASO 4: Ejecutar el dashboard
     interfaz.ejecutar()
 
@@ -466,10 +329,4 @@ def main():
 # EJECUCIÓN DEL PROGRAMA
 # ============================================
 if __name__ == "__main__":
-    """
-    ¿Qué es esto?
-    - Se ejecuta solo cuando corres este archivo directamente
-    - No se ejecuta si importas este archivo en otro
-    - Es la "puerta de entrada" del programa
-    """
     main()
