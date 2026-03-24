@@ -38,17 +38,8 @@ class ProcesadorEDA:
             if col_fecha in df.columns:
                 df[col_fecha] = Utilidades.parse_fecha(df[col_fecha])
 
-        # 3) Normalización de idioma (si existe)
-        for col_lang in ["original_language", "originalLanguage", "language"]:
-            if col_lang in df.columns:
-                df[col_lang] = Utilidades.normalizar_idioma(df[col_lang])
 
-        # 4) Normalización de géneros (si existe)
-        for col_gen in ["genres", "genre", "genres_list"]:
-            if col_gen in df.columns:
-                df[col_gen] = Utilidades.normalizar_generos(df[col_gen])
-
-        # 5) Conversión de columnas numéricas típicas
+        # 3) Conversión de columnas numéricas típicas
         numericas_posibles = [
             "budget",
             "revenue",
@@ -61,14 +52,14 @@ class ProcesadorEDA:
         for c in Utilidades.asegurar_columnas(df, numericas_posibles):
             df[c] = pd.to_numeric(df[c], errors="coerce")
 
-        # 6) Manejo de valores nulos
-        # 6.1) Eliminar filas sin título (crítico)
+        # 7) Manejo de valores nulos
+        # 7.1) Eliminar filas sin título (crítico)
         for col_titulo in ["title", "original_title", "name"]:
             if col_titulo in df.columns:
                 df = df.dropna(subset=[col_titulo])
                 break
 
-        # 6.2) Numéricos → imputación con mediana
+        # 7.2) Numéricos → imputación con mediana
         for c in Utilidades.asegurar_columnas(df, numericas_posibles):
             if df[c].isna().any():
                 df[c] = df[c].fillna(df[c].median())
@@ -96,6 +87,7 @@ class ProcesadorEDA:
         Nota: asegúrate de que el archivo no esté abierto en Excel.
         """
         self.df.to_csv(ruta_salida, index=False)
+
 
     def resumen_descriptivo(self) -> pd.DataFrame:
         """
