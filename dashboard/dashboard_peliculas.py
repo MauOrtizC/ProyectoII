@@ -43,7 +43,7 @@ class AnalizadorPeliculas:
         - ruta_archivo: Ubicación del CSV
         """
         # Ruta de la PC de Josué
-        self.ruta_archivo = r"C:\Users\XPC\Documents\CUC\Cuatri 5\BD - 143 - Programación ll\Trabajos\Proyecto 2\data\processed\tmdb_movies_clean.csv"
+        self.ruta_archivo = r"C:\Movie_Insigths\data\processed\tmdb_movies_clean.csv"
         self.df = None  # Inicialmente vacío
     
     def cargar_datos(self):
