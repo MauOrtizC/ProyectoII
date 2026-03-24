@@ -13,7 +13,8 @@ Proyecto de **Análisis Exploratorio de Datos (EDA)** y **Visualización Interac
 python -m src.main
 
 # Ejecutar dashboard
-streamlit run dashboard/app.py
+python -m streamlit run dashboard/app.py
+python -m streamlit run dashboard/dashboard_peliculas.py
 ```
 
 Dashboard disponible en: `http://localhost:8501`
