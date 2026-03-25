@@ -303,18 +303,18 @@ class InterfazDashboard:
 # ============================================
 def main():
 
-    # PASO 1: Crear el analizador de películas
+    # Crear el analizador de películas
     ruta_csv = 'tmdb_movies_clean.csv'
     analizador = AnalizadorPeliculas(ruta_csv)
 
-    # PASO 2: Cargar los datos
+    # Cargar los datos
     if not analizador.cargar_datos():
         st.stop()  # Detener ejecución si falló la carga
 
-    # PASO 3: Crear la interfaz
+    # Crear la interfaz
     interfaz = InterfazDashboard(analizador)
 
-    # PASO 4: Ejecutar el dashboard
+    # Ejecutar el dashboard
     interfaz.ejecutar()
 
 
