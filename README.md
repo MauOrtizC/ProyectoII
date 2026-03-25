@@ -28,7 +28,7 @@ Dashboard disponible en: `http://localhost:8501`
 
 ## Estructura del Proyecto
 
->>>>>>> 15ccbacb6c8bdd33a75dbb73d7772fe1d34720d5
+
 Movie_Insigths/
 ├── data/                 # Datos de entrada y salidas limpias
 ├── notebooks/            # Análisis exploratorio y justificación
@@ -40,7 +40,7 @@ Movie_Insigths/
 ├── dashboard/            # Dashboard interactivo (Streamlit)
 ├── requirements.txt      # Dependencias del proyecto
 └── README.md
-<<<<<<< HEAD
+
 ```
 
 ---
