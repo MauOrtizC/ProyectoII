@@ -7,14 +7,6 @@ from src.helpers.utilidades import Utilidades
 
 
 class ProcesadorEDA:
-    """
-    Responsabilidades:
-    - Limpieza de datos
-    - Estadística descriptiva
-    - Matriz de correlación
-    - Detección de outliers (IQR)
-    - Análisis de rentabilidad (si existen budget/revenue)
-    """
 
     def __init__(self, df: pd.DataFrame):
         self.df_original = df.copy()
@@ -52,24 +44,24 @@ class ProcesadorEDA:
         for c in Utilidades.asegurar_columnas(df, numericas_posibles):
             df[c] = pd.to_numeric(df[c], errors="coerce")
 
-        # 7) Manejo de valores nulos
-        # 7.1) Eliminar filas sin título (crítico)
+        #  Manejo de valores nulos
+        #  Eliminar filas sin título
         for col_titulo in ["title", "original_title", "name"]:
             if col_titulo in df.columns:
                 df = df.dropna(subset=[col_titulo])
                 break
 
-        # 7.2) Numéricos → imputación con mediana
+        # Numéricos → imputación con mediana
         for c in Utilidades.asegurar_columnas(df, numericas_posibles):
             if df[c].isna().any():
                 df[c] = df[c].fillna(df[c].median())
 
-        # 6.3) Categóricos → "unknown"
+        # Categóricos → "unknown"
         categoricas_posibles = ["original_language", "status"]
         for c in Utilidades.asegurar_columnas(df, categoricas_posibles):
             df[c] = df[c].fillna("unknown")
 
-        # 7) Feature engineering: rentabilidad
+        #
         if "revenue" in df.columns and "budget" in df.columns:
             df["profit"] = df["revenue"] - df["budget"]
             df["roi"] = np.where(
@@ -90,10 +82,7 @@ class ProcesadorEDA:
 
 
     def resumen_descriptivo(self) -> pd.DataFrame:
-        """
-        Devuelve estadísticas descriptivas:
-        count, mean, std, min, q1, median, q3, max
-        """
+
         num = self.df.select_dtypes(include=[np.number])
         if num.empty:
             return pd.DataFrame()
@@ -107,18 +96,14 @@ class ProcesadorEDA:
         return resumen[orden]
 
     def matriz_correlacion(self) -> pd.DataFrame:
-        """
-        Matriz de correlación entre variables numéricas.
-        """
+
         num = self.df.select_dtypes(include=[np.number])
         if num.empty:
             return pd.DataFrame()
         return num.corr(numeric_only=True)
 
     def detectar_outliers_iqr(self, columna: str) -> pd.DataFrame:
-        """
-        Detecta outliers usando el método IQR.
-        """
+
         if columna not in self.df.columns:
             raise ValueError(f"No existe la columna: {columna}")
 
@@ -136,9 +121,7 @@ class ProcesadorEDA:
         ]
 
     def top_rentables(self, n: int = 10) -> pd.DataFrame:
-        """
-        Top N películas más rentables por ROI.
-        """
+     
         if "roi" not in self.df.columns:
             return pd.DataFrame()
 
