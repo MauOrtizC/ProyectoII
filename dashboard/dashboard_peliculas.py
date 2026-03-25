@@ -302,14 +302,7 @@ class InterfazDashboard:
 # FUNCIÓN MAIN (Punto de entrada)
 # ============================================
 def main():
-    """
-    Función principal que inicia la aplicación.
 
-    ¿Por qué una función main?
-    - Buena práctica de programación
-    - Separa la lógica de inicio
-    - Facilita testing y reutilización
-    """
     # PASO 1: Crear el analizador de películas
     ruta_csv = 'tmdb_movies_clean.csv'
     analizador = AnalizadorPeliculas(ruta_csv)
